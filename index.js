@@ -80,7 +80,7 @@ class CameraRollPicker extends Component{
                           :
                           <Image
                             style={[ styles.checkIcon, { width: 25, height: 25, right: this.props.imageMargin + 5 }, ]}
-                            source={require('./circle-check.png')}
+                            source={require('./checkmark.png')}
                           />
 
     var items=[];
