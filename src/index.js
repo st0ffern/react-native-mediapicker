@@ -4,10 +4,7 @@ import {
   ,Platform
   ,StyleSheet
   ,View
-  ,Text
-  ,Dimensions
   ,ListView
-  ,ActivityIndicator
 } from 'react-native'
 
 import SGListView from 'react-native-sglistview'
@@ -26,8 +23,6 @@ class MediaPicker extends Component{
   }
 
   componentWillMount() {
-    var { width } = Dimensions.get('window');
-    this.imageSize = ((width - (this.props.imagesPerRow+1) * this.props.imageMargin) / this.props.imagesPerRow);
 
     //Fetch
     var fetchParams = {
@@ -50,6 +45,7 @@ class MediaPicker extends Component{
         this.setState({dataSource: this.state.dataSource.cloneWithRows(rows)})
       });
   }
+
   render(){
     return (
       <View style={[ styles.wrapper, { padding: this.props.imageMargin, paddingRight: 0, backgroundColor: this.props.backgroundColor}, ]}>
@@ -57,12 +53,7 @@ class MediaPicker extends Component{
           style={styles.list}
           contentContainerStyle={styles.listContainer}
           dataSource={this.state.dataSource}
-          renderRow={rowData => 
-            <MediaItem 
-              data={data} 
-              selected={this.selected}
-              onClick={item => this._handleClick(item)}/>
-          } />
+          renderRow={rowData => this.renderRow(rowData) } />
       </View>
     );
   }
@@ -71,8 +62,16 @@ class MediaPicker extends Component{
       if (item === null) {
         return null;
       }
-      console.log(data)
-      return this._renderImage(item,key);
+      return (
+        <MediaItem 
+          key={key}
+          item={item} 
+          selected={this.selected}
+          imageMargin={this.props.imageMargin}
+          imagesPerRow={this.props.imagesPerRow}
+          selectedMarker={this.state.selectedMarker}
+          onClick={item => this._handleClick(item)}/>
+      )
     })
     return(
       <View style={styles.row}>
@@ -80,14 +79,15 @@ class MediaPicker extends Component{
       </View>
     )
   }
+
   _handleClick(item){
     var selected = this.selected
-    var index = selected.indexOf(image)
+    var index = selected.indexOf(item)
 
     if (index >= 0) selected.splice(index, 1)
     else {
-      if (selected.length < this.props.maximum) selected.push(image)
-      else selected = [image]
+      if (selected.length < this.props.maximum) selected.push(item)
+      else selected = [item]
     }
     this.selected = selected 
     this.props.callback(this.selected)
@@ -142,4 +142,4 @@ MediaPicker.defaultProps = {
   },
 }
 
-export default MediaPicker;
+export default MediaPicker
