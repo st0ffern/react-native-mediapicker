@@ -14,6 +14,7 @@ Media Picker for React Native
 - `selectedMarker`: Custom selected image marker component. (Default: checkmark).
 - `backgroundColor`: Set background color. (Default: white).
 - `selected`: set preselected items (Default: none ).
+- `showLoading`: show loading spinners before image will show? (Default: true ).
 
 
 ## Installation
@@ -36,6 +37,7 @@ import MediaPicker from "react-native-media-picker"
   maximum={1}
   imagesPerRow={3}
   imageMargin={5}
+  showLoading={true}
   backgroundColor="black"
   selectedMarker={
     <Image
