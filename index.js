@@ -7,15 +7,12 @@ import {
   ,Text
   ,Dimensions
   ,ListView
-  ,ProgressBarAndroid
-  ,ActivityIndicatorIOS
+  ,ActivityIndicator
 } from 'react-native'
 
 import SGListView from 'react-native-sglistview'
 import Image from 'react-native-image-progress'
 import Button from 'react-native-nativebutton'
-
-const DefaultIndicator = Platform.OS === 'android' ? ProgressBarAndroid : ActivityIndicatorIOS;
 
 class MediaPicker extends Component{
   constructor(props) {
@@ -102,11 +99,11 @@ class MediaPicker extends Component{
         style={{marginBottom: this.props.imageMargin, marginRight: this.props.imageMargin}}
         onPress={event => this._selectImage(item.node.image)}>
         <Image 
+          indicator={ActivityIndicator}
           source={{ uri: item.node.image.uri }} 
           style={{height: this.imageSize, width: this.imageSize}} >
           { (this.state.selected.indexOf(item.node.image) >= 0) ? marker : null }
         </Image>
-        {content}
       </Button>
     );
   }
