@@ -1,28 +1,33 @@
 import React,{Component} from 'react'
 import {
   CameraRoll
-  ,Image
   ,Platform
   ,StyleSheet
   ,View
   ,Text
   ,Dimensions
-  ,TouchableOpacity
   ,ListView
+  ,ProgressBarAndroid
+  ,ActivityIndicatorIOS
 } from 'react-native'
 
 import SGListView from 'react-native-sglistview'
+import Image from 'react-native-image-progress'
+import Button from 'react-native-nativebutton'
 
-class CameraRollPicker extends Component{
+const DefaultIndicator = Platform.OS === 'android' ? ProgressBarAndroid : ActivityIndicatorIOS;
+
+class MediaPicker extends Component{
   constructor(props) {
     super(props);
-  
     this.state = {
       images: [],
       selected: [],
+      loadingImages: [],
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-    };
+    }
   }
+
   componentWillMount() {
     var { width } = Dimensions.get('window');
     this.imageSize = ((width - (this.props.imagesPerRow+1) * this.props.imageMargin) / this.props.imagesPerRow);
@@ -49,19 +54,14 @@ class CameraRollPicker extends Component{
       });
   }
 
-
   _selectImage(image) {
-    var selected = this.state.selected;
-    var index = selected.indexOf(image);
-
-    if (index >= 0) {
-      selected.splice(index, 1);
-    } else {
-      if (selected.length < this.props.maximum) selected.push(image);
-      else selected = [image];
+    if (index >= 0) this.state.selected.splice(this.state.selected.indexOf(image), 1)
+    else {
+      if (this.state.selected.length < this.props.maximum) this.state.selected.push(image)
+      else this.state.selected = [image]
     }
-    this.setState({ selected: selected });
-    this.props.callback(this.state.selected);
+    this.setState({ selected: selected })
+    this.props.callback(this.state.selected)
   }
   render(){
     return (
@@ -75,38 +75,40 @@ class CameraRollPicker extends Component{
     );
   }
 
-  _renderImage(item) {
-    var marker = this.props.selectedMarker ? this.props.selectedMarker :
-      <Image
-        style={[styles.marker, {width: 25, height: 25, right: this.props.imageMargin + 5},]}
-        source={require('./circle-check.png')}
-      />;
-
-    return (
-      <TouchableOpacity
-        style={{marginBottom: this.props.imageMargin, marginRight: this.props.imageMargin}}
-        onPress={event => this._selectImage(item.node.image)}>
-        <Image
-          source={{uri: item.node.image.uri}}
-          style={{height: this._imageSize, width: this._imageSize}} >
-          { (this.state.selected.indexOf(item.node.image) >= 0) ? marker : null }
-        </Image>
-      </TouchableOpacity>
-    );
-  }
-
   renderRow(data){
-    var items = rowData.map((item) => {
+    var items = data.map((item,key) => {
       if (item === null) {
         return null;
       }
-      return this._renderImage(item);
+      console.log(data)
+      return this._renderImage(item,key);
     })
     return(
       <View style={styles.row}>
         {items}
       </View>
     )
+  }
+
+  _renderImage(item,key) {
+    var marker = this.props.selectedMarker ? this.props.selectedMarker :
+      <Image
+        style={[styles.marker, {width: 25, height: 25, right: this.props.imageMargin + 5},]}
+        source={require('./checkmark.png')}
+      />
+    return (
+      <Button
+        key={key}
+        style={{marginBottom: this.props.imageMargin, marginRight: this.props.imageMargin}}
+        onPress={event => this._selectImage(item.node.image)}>
+        <Image 
+          source={{ uri: item.node.image.uri }} 
+          style={{height: this.imageSize, width: this.imageSize}} >
+          { (this.state.selected.indexOf(item.node.image) >= 0) ? marker : null }
+        </Image>
+        {content}
+      </Button>
+    );
   }
 }
 
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
   },
 })
 
-CameraRollPicker.propTypes = {
+MediaPicker.propTypes = {
   groupTypes: React.PropTypes.oneOf([
     'Album',
     'All',
@@ -149,7 +151,7 @@ CameraRollPicker.propTypes = {
   selectedMarker: React.PropTypes.element,
   backgroundColor: React.PropTypes.string,
 }
-CameraRollPicker.defaultProps = {
+MediaPicker.defaultProps = {
   groupTypes: 'SavedPhotos',
   maximum: 15,
   imagesPerRow: 3,
@@ -161,4 +163,4 @@ CameraRollPicker.defaultProps = {
   },
 }
 
-export default CameraRollPicker;
+export default MediaPicker;
