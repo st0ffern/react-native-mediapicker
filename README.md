@@ -1,7 +1,7 @@
-# react-native-media-picker
+# react-native-mediapicker
 Media Picker for React Native
 
-<img src="https://raw.githubusercontent.com/stoffern/react-native-media-picker/master/demo/demo.gif" width="350">
+<img src="https://raw.githubusercontent.com/stoffern/react-native-mediapicker/master/demo/demo.gif" width="350">
 
 ## Props
 
