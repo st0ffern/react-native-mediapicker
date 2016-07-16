@@ -29,7 +29,7 @@ class CameraRollPicker extends Component{
 
     //Fetch
     var fetchParams = {
-      first: 1000,
+      first: 10000,
       groupTypes: this.props.groupTypes,
       assetType: this.props.assetType,
     };
@@ -74,30 +74,33 @@ class CameraRollPicker extends Component{
       </View>
     );
   }
+
+  _renderImage(item) {
+    var marker = this.props.selectedMarker ? this.props.selectedMarker :
+      <Image
+        style={[styles.marker, {width: 25, height: 25, right: this.props.imageMargin + 5},]}
+        source={require('./circle-check.png')}
+      />;
+
+    return (
+      <TouchableOpacity
+        style={{marginBottom: this.props.imageMargin, marginRight: this.props.imageMargin}}
+        onPress={event => this._selectImage(item.node.image)}>
+        <Image
+          source={{uri: item.node.image.uri}}
+          style={{height: this._imageSize, width: this._imageSize}} >
+          { (this.state.selected.indexOf(item.node.image) >= 0) ? marker : null }
+        </Image>
+      </TouchableOpacity>
+    );
+  }
+
   renderRow(data){
-    var selectedMarker = this.props.selectedMarker ?
-                          this.props.selectedMarker
-                          :
-                          <Image
-                            style={[ styles.checkIcon, { width: 25, height: 25, right: this.props.imageMargin + 5 }, ]}
-                            source={require('./checkmark.png')}
-                          />
-
-    var items=[];
-    data.forEach(item =>{
-      items.push(
-        <TouchableOpacity 
-          style={{marginBottom: this.props.imageMargin, marginRight: this.props.imageMargin}}
-          onPress={event => this._selectImage(item.node.image.uri)}>
-          <Image 
-            source={{uri: item.node.image.uri}} 
-            style={{height: this.imageSize, width: this.imageSize}} >
-
-            { (this.state.selected.indexOf(item.node.image.uri) >= 0)? selectedMarker : null }
-
-          </Image>
-        </TouchableOpacity>
-      )
+    var items = rowData.map((item) => {
+      if (item === null) {
+        return null;
+      }
+      return this._renderImage(item);
     })
     return(
       <View style={styles.row}>
