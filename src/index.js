@@ -67,6 +67,7 @@ class MediaPicker extends Component{
           key={key}
           item={item} 
           selected={this.selected}
+          showLoading={this.props.showLoading}
           imageMargin={this.props.imageMargin}
           imagesPerRow={this.props.imagesPerRow}
           selectedMarker={this.state.selectedMarker}
@@ -128,6 +129,7 @@ MediaPicker.propTypes = {
   selectedMarker: React.PropTypes.element,
   backgroundColor: React.PropTypes.string,
   selected: React.PropTypes.array,
+  showLoading: React.PropTypes.bool,
 }
 MediaPicker.defaultProps = {
   groupTypes: 'SavedPhotos',
@@ -137,6 +139,7 @@ MediaPicker.defaultProps = {
   assetType: 'Photos',
   backgroundColor: 'white',
   selected: [],
+  showLoading: true,
   callback: function(d) {
     console.log(d);
   },

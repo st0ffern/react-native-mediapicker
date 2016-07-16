@@ -4,10 +4,11 @@ import{
   ,StyleSheet
   ,Dimensions
   ,ActivityIndicator
+  ,Image
 } from 'react-native'
 
 import Button from 'react-native-nativebutton'
-import Image from 'react-native-image-progress'
+import ImageProgress from 'react-native-image-progress'
 
 class MediaItem extends Component{
   constructor(props){
@@ -21,10 +22,9 @@ class MediaItem extends Component{
     this.imageSize = ((width - (this.props.imagesPerRow+1) * this.props.imageMargin) / this.props.imagesPerRow);
 
     if (this.props.selected.indexOf(this.props.item)){
-      console.log(this.props.selected);
-
       this.setState({selected: true})
     }
+    ImageComponent = this.props.showLoading? ImageProgress:Image
   }
 
   render(){
@@ -39,12 +39,12 @@ class MediaItem extends Component{
         key={item.node.image.uri}
         style={{marginBottom: this.props.imageMargin, marginRight: this.props.imageMargin}}
         onPress={event => this._handleClick(item.node.image)}>
-        <Image 
+        <ImageComponent 
           indicator={ActivityIndicator}
           source={{ uri: item.node.image.uri }} 
           style={{height: this.imageSize, width: this.imageSize}} >
           { (!this.state.selected)? marker : null }
-        </Image>
+        </ImageComponent>
       </Button>
     )    
   }
