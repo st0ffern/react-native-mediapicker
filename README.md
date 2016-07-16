@@ -13,6 +13,7 @@ Media Picker for React Native
 - `imageMargin`: Margin size of one image. (Default: 5)
 - `selectedMarker`: Custom selected image marker component. (Default: checkmark).
 - `backgroundColor`: Set background color. (Default: white).
+- `selected`: set preselected items (Default: none ).
 
 
 ## Installation
@@ -35,6 +36,11 @@ import MediaPicker from "react-native-media-picker"
   maximum={1}
   imagesPerRow={3}
   imageMargin={5}
-  selectedMarker
-  backgroundColor />
+  backgroundColor="black"
+  selectedMarker={
+    <Image
+      style={[styles.checkIcon, {width: 25, height: 25, right: this.props.imageMargin + 5},]}
+      source={require('./checkmark.png')}
+    />
+  } />
 ```

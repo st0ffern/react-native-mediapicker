@@ -11,8 +11,7 @@ import {
 } from 'react-native'
 
 import SGListView from 'react-native-sglistview'
-import Image from 'react-native-image-progress'
-import Button from 'react-native-nativebutton'
+import MediaItem from './MediaItem'
 
 class MediaPicker extends Component{
   constructor(props) {
@@ -23,6 +22,7 @@ class MediaPicker extends Component{
       loadingImages: [],
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     }
+    this.selected = this.props.selected
   }
 
   componentWillMount() {
@@ -50,16 +50,6 @@ class MediaPicker extends Component{
         this.setState({dataSource: this.state.dataSource.cloneWithRows(rows)})
       });
   }
-
-  _selectImage(image) {
-    if (index >= 0) this.state.selected.splice(this.state.selected.indexOf(image), 1)
-    else {
-      if (this.state.selected.length < this.props.maximum) this.state.selected.push(image)
-      else this.state.selected = [image]
-    }
-    this.setState({ selected: selected })
-    this.props.callback(this.state.selected)
-  }
   render(){
     return (
       <View style={[ styles.wrapper, { padding: this.props.imageMargin, paddingRight: 0, backgroundColor: this.props.backgroundColor}, ]}>
@@ -67,11 +57,15 @@ class MediaPicker extends Component{
           style={styles.list}
           contentContainerStyle={styles.listContainer}
           dataSource={this.state.dataSource}
-          renderRow={rowData => this.renderRow(rowData)} />
+          renderRow={rowData => 
+            <MediaItem 
+              data={data} 
+              selected={this.selected}
+              onClick={item => this._handleClick(item)}/>
+          } />
       </View>
     );
   }
-
   renderRow(data){
     var items = data.map((item,key) => {
       if (item === null) {
@@ -86,26 +80,17 @@ class MediaPicker extends Component{
       </View>
     )
   }
+  _handleClick(item){
+    var selected = this.selected
+    var index = selected.indexOf(image)
 
-  _renderImage(item,key) {
-    var marker = this.props.selectedMarker ? this.props.selectedMarker :
-      <Image
-        style={[styles.marker, {width: 25, height: 25, right: this.props.imageMargin + 5},]}
-        source={require('./checkmark.png')}
-      />
-    return (
-      <Button
-        key={key}
-        style={{marginBottom: this.props.imageMargin, marginRight: this.props.imageMargin}}
-        onPress={event => this._selectImage(item.node.image)}>
-        <Image 
-          indicator={ActivityIndicator}
-          source={{ uri: item.node.image.uri }} 
-          style={{height: this.imageSize, width: this.imageSize}} >
-          { (this.state.selected.indexOf(item.node.image) >= 0) ? marker : null }
-        </Image>
-      </Button>
-    );
+    if (index >= 0) selected.splice(index, 1)
+    else {
+      if (selected.length < this.props.maximum) selected.push(image)
+      else selected = [image]
+    }
+    this.selected = selected 
+    this.props.callback(this.selected)
   }
 }
 
@@ -119,14 +104,10 @@ const styles = StyleSheet.create({
   row:{
     flexDirection: 'row',
   },
-  checkIcon: {
-    position: 'absolute',
-    top: 5,
-    backgroundColor: 'transparent',
-  },
 })
 
 MediaPicker.propTypes = {
+  callback: React.PropTypes.func.isRequired,
   groupTypes: React.PropTypes.oneOf([
     'Album',
     'All',
@@ -144,9 +125,9 @@ MediaPicker.propTypes = {
   ]),
   imagesPerRow: React.PropTypes.number,
   imageMargin: React.PropTypes.number,
-  callback: React.PropTypes.func,
   selectedMarker: React.PropTypes.element,
   backgroundColor: React.PropTypes.string,
+  selected: React.PropTypes.array,
 }
 MediaPicker.defaultProps = {
   groupTypes: 'SavedPhotos',
@@ -155,6 +136,7 @@ MediaPicker.defaultProps = {
   imageMargin: 5,
   assetType: 'Photos',
   backgroundColor: 'white',
+  selected: [],
   callback: function(d) {
     console.log(d);
   },
