@@ -1,5 +1,5 @@
 # react-native-media-picker
-Media Pickerfor React Native
+Media Picker for React Native
 
 <img src="https://raw.githubusercontent.com/stoffern/react-native-media-picker/master/demo/demo.gif" width="350">
 
