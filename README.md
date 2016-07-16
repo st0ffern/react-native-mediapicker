@@ -5,7 +5,7 @@ Media Pickerfor React Native
 
 ## Props
 
-- `callback`: **required ** Callback function when images was selected.
+- `callback`: ***required*** Callback function when images was selected.
 - `groupTypes`: The group where the photos will be fetched, one of 'Album', 'All', 'Event', 'Faces', 'Library', 'PhotoStream' and 'SavedPhotos'. (Default: SavedPhotos)
 - `assetType`: The asset type, one of 'Photos', 'Videos' or 'All'. (Default: Photos)
 - `maximum`: Maximum number of selected images. (Default: 15)
