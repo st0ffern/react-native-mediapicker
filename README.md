@@ -20,13 +20,13 @@ Media Picker for React Native
 ## Installation
 
 ```js
-npm i -S react-native-media-picker
+npm i -S react-native-mediapicker
 ```
 
 ## Usage Examples
 
 ```js
-import MediaPicker from "react-native-media-picker"
+import MediaPicker from "react-native-mediapicker"
 ```
 
 ```javascript
