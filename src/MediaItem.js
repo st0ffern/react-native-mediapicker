@@ -13,17 +13,10 @@ import ImageProgress from 'react-native-image-progress'
 class MediaItem extends Component{
   constructor(props){
     super(props)
-    this.state ={
-      selected: false,
-    }
   }
   componentWillMount(){
     var { width } = Dimensions.get('window');
     this.imageSize = ((width - (this.props.imagesPerRow+1) * this.props.imageMargin) / this.props.imagesPerRow);
-
-    if (this.props.selected.indexOf(this.props.item)){
-      this.setState({selected: true})
-    }
     ImageComponent = this.props.showLoading? ImageProgress:Image
   }
 
@@ -43,16 +36,13 @@ class MediaItem extends Component{
           indicator={ActivityIndicator}
           source={{ uri: item.node.image.uri }} 
           style={{height: this.imageSize, width: this.imageSize}} >
-          { (!this.state.selected)? marker : null }
+          { (this.props.selected)? marker : null }
         </ImageComponent>
       </Button>
     )    
   }
 
   _handleClick(item){
-    this.setState({
-      selected: !this.state.selected
-    })
     this.props.onClick(item)
   }
 
@@ -69,13 +59,13 @@ var styles = StyleSheet.create({
 
 MediaItem.defaultProps = {
   item: {},
-  selected: [],
+  selected: false,
 }
 
 MediaItem.propTypes = {
   item: React.PropTypes.any.isRequired,
   onClick: React.PropTypes.func.isRequired,
-  selected: React.PropTypes.array,
+  selected: React.PropTypes.bool,
   selectedMarker: React.PropTypes.element,
   imageMargin: React.PropTypes.number.isRequired,
 }

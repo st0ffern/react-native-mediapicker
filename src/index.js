@@ -15,11 +15,9 @@ class MediaPicker extends Component{
     super(props);
     this.state = {
       images: [],
-      selected: [],
-      loadingImages: [],
+      selected:[],
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     }
-    this.selected = this.props.selected
   }
 
   componentWillMount() {
@@ -36,12 +34,10 @@ class MediaPicker extends Component{
 
     CameraRoll.getPhotos(fetchParams)
       .then((data) => {
-        //split to rows
         var rows=[];
         while (data.edges.length > 0){
             rows.push(data.edges.splice(0,this.props.imagesPerRow));
         }
-        //cloneWithRows
         this.setState({dataSource: this.state.dataSource.cloneWithRows(rows)})
       });
   }
@@ -62,6 +58,12 @@ class MediaPicker extends Component{
       if (item === null) {
         return null;
       }
+
+      var signature = item.node.image.uri
+      var index = this.state.selected.indexOf(signature)
+      if (index >= 0) this.selected = true
+      else this.selected = false
+        
       return (
         <MediaItem 
           key={key}
@@ -82,16 +84,20 @@ class MediaPicker extends Component{
   }
 
   _handleClick(item){
-    var selected = this.selected
-    var index = selected.indexOf(item)
+    var signature = item.uri
+    var selected = this.state.selected
+    var index = selected.indexOf(signature)
 
     if (index >= 0) selected.splice(index, 1)
     else {
-      if (selected.length < this.props.maximum) selected.push(item)
-      else selected = [item]
+      if (selected.length < this.props.maximum) selected.push(signature)
+      else {
+        selected.shift()
+        selected.push(signature)
+      }
     }
-    this.selected = selected 
-    this.props.callback(this.selected)
+    this.setState({selected: selected}) 
+    this.props.callback(this.state.selected)
   }
 }
 
@@ -140,8 +146,8 @@ MediaPicker.defaultProps = {
   backgroundColor: 'white',
   selected: [],
   showLoading: true,
-  callback: function(d) {
-    console.log(d);
+  callback: (d) => {
+    console.log(d)
   },
 }
 
