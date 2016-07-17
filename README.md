@@ -1,5 +1,6 @@
-# react-native-mediapicker
+# react-native-mediapicker [![version](https://img.shields.io/npm/v/react-native-mediapicker.svg)](https://www.npmjs.org/package/react-native-mediapicker) [![dependencies](https://david-dm.org/stoffern/react-native-mediapicker.svg)](https://david-dm.org/stoffern/react-native-mediapicker)
 Media Picker for React Native
+
 
 <img src="https://raw.githubusercontent.com/stoffern/react-native-mediapicker/master/demo/demo.gif" width="350">
 
