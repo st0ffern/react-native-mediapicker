@@ -17,11 +17,11 @@ class MediaItem extends Component{
   componentWillMount(){
     var { width } = Dimensions.get('window');
     this.imageSize = ((width - (this.props.imagesPerRow+1) * this.props.imageMargin) / this.props.imagesPerRow);
-    ImageComponent = this.props.showLoading? ImageProgress:Image
   }
 
   render(){
     var {item} = this.props
+    var ImageComponent = this.props.showLoading? ImageProgress:Image
     var marker = this.props.selectedMarker ? this.props.selectedMarker :
       <Image
         style={[styles.checkIcon, {width: 25, height: 25, right: this.props.imageMargin + 5},]}

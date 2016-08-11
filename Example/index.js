@@ -1,20 +1,20 @@
-import React,{Component} from 'react'
+import React, {Component} from 'react'
 import {
-  ,StyleSheet
+  StyleSheet
   ,View
 } from 'react-native'
 
-import MediaPicker from 'react-native-media-picker';
+import MediaPicker from 'react-native-mediapicker';
 
-class Example extends Component{
+class Example extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <CameraRollPicker
-          groupTypes='SavedPhotos'
+        <MediaPicker
+          groupTypes={'SavedPhotos'}
           batchSize={25}
           maximum={15}
-          assetType='Photos'
+          assetType={'Photos'}
           imagesPerRow={3}
           imageMargin={5}
           callback={images => this.doSomething(images)} />
@@ -32,3 +32,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
   }
 })
+
+export default Example
