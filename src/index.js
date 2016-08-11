@@ -46,6 +46,11 @@ class MediaPicker extends Component{
     return (
       <View style={[ styles.wrapper, { padding: this.props.imageMargin, paddingRight: 0, backgroundColor: this.props.backgroundColor}, ]}>
         <SGListView
+          stickyHeaderIndices={this.props.stickyHeaderIndices}
+          onEndReachedThreshold={this.props.onEndReachedThreshold}
+          initialListSize={this.props.initialListSize}
+          pageSize={this.props.pageSize}
+          scrollRenderAheadDistance={this.props.scrollRenderAheadDistance}
           style={styles.list}
           contentContainerStyle={styles.listContainer}
           dataSource={this.state.dataSource}
@@ -144,6 +149,11 @@ MediaPicker.defaultProps = {
   imageMargin: 5,
   assetType: 'Photos',
   backgroundColor: 'white',
+  stickyHeaderIndices: [],
+  onEndReachedThreshold: 1000,
+  initialListSize: 10,
+  scrollRenderAheadDistance: 50,
+  pageSize: 24,
   selected: [],
   showLoading: true,
   callback: (d) => {
