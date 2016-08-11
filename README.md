@@ -1,4 +1,5 @@
-# react-native-mediapicker [![version](https://img.shields.io/npm/v/react-native-mediapicker.svg)](https://www.npmjs.org/package/react-native-mediapicker) [![dependencies](https://david-dm.org/stoffern/react-native-mediapicker.svg)](https://david-dm.org/stoffern/react-native-mediapicker) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+# react-native-mediapicker [![version](https://img.shields.io/npm/v/react-native-mediapicker.svg?maxAge=2592000)](https://www.npmjs.org/package/react-native-mediapicker) [![npm](https://img.shields.io/npm/dt/express.svg?maxAge=2592000)](https://www.npmjs.org/package/react-native-mediapicker) [![dependencies](https://david-dm.org/stoffern/react-native-mediapicker.svg?maxAge=1000)](https://david-dm.org/stoffern/react-native-mediapicker) [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?maxAge=2592000)](http://commitizen.github.io/cz-cli/) [![npm](https://img.shields.io/npm/l/react-native-mediapicker.svg?maxAge=2592000)]()
+
 
 Media Picker for React Native
 
