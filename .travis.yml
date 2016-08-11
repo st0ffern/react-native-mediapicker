@@ -11,6 +11,8 @@ before_install:
   - npm i -g npm@^2.0.0
   - npm install -g eslint
   - npm install -g eslint-plugin-react
+  - npm i react@~15.2.1
+  - npm i react-native@0.31.0
 before_script:
   - npm prune
 script:
