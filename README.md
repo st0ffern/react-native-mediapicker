@@ -22,8 +22,12 @@ Media Picker for React Native
 
 ## Installation
 
-```js
+```bash
 npm i -S react-native-mediapicker
+```
+or
+```bash
+yarn add react-native-mediapicker
 ```
 
 ## Usage Examples
