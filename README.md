@@ -30,7 +30,7 @@ or
 yarn add react-native-mediapicker
 ```
 
-** Link Native Modules (IOS) **
+### Link Native Modules (IOS)
 
 In XCode, you need to add a link to RCTCameraRoll. You will find more information in the [react-native docs](https://facebook.github.io/react-native/docs/linking-libraries-ios.html#content)
 
@@ -38,7 +38,7 @@ In XCode, you need to add a link to RCTCameraRoll. You will find more informatio
 
 For IOS10 you need to add a “Privacy - Photo Library Usage Description”-key to Info.plist. For more information, see this [blog] (https://useyourloaf.com/blog/privacy-settings-in-ios-10/)
 
-## Usage Examples
+### Usage Examples
 
 ```js
 import MediaPicker from "react-native-mediapicker"
