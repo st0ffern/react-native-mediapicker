@@ -16,6 +16,7 @@ class MediaPicker extends Component{
     this.state = {
       images: [],
       selected:[],
+      selectedItems:[],
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     }
   }
@@ -89,20 +90,37 @@ class MediaPicker extends Component{
   }
 
   _handleClick(item){
-    var signature = item.uri
-    var selected = this.state.selected
-    var index = selected.indexOf(signature)
+    var uri = item.uri
 
-    if (index >= 0) selected.splice(index, 1)
-    else {
-      if (selected.length < this.props.maximum) selected.push(signature)
-      else {
+    let selectedItem = {
+      filename: item.filename
+    };
+
+    var selected = this.state.selected
+    var selectedItems = this.state.selectedItems
+    var index = selected.indexOf(uri)
+
+    if (index >= 0) { 
+      selected.splice(index, 1)
+      selectedItems.splice(index, 1)
+    } else {
+      if (selected.length < this.props.maximum) {
+        selected.push(uri)
+        selectedItems.push(selectedItem)
+      } else {
         selected.shift()
-        selected.push(signature)
+        selectedItems.shift()
+
+        selected.push(uri)
+        selectedItems.push(selectedItem)
       }
     }
     this.setState({selected: selected}) 
-    this.props.callback(this.state.selected)
+    this.props.callback(this.state.selected, this.state.selectedItems)
+    
+    // Empties state-arrays after callback:
+    this.setState({selected: []})
+    this.setState({selectedItems: []})  
   }
 }
 
