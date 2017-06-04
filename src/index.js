@@ -122,7 +122,7 @@ class MediaPicker extends Component{
     this.setState({selected: []})
     this.setState({selectedItems: []})  
   }
-}
+};
 
 const styles = StyleSheet.create({
   wrapper:{
