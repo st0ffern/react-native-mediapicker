@@ -28,7 +28,7 @@
   "dependencies": {
     "react-native-image-progress": "^0.6.0",
     "react-native-nativebutton": "^0.1.4",
-    "react-native-sglistview": "^0.3.10"
+    "react-native-sglistview": "^0.4.3"
   },
   "peerDependencies": {
     "react-native": ">=0.25.0",
@@ -38,8 +38,8 @@
   "devDependencies": {
     "cz-conventional-changelog": "^2.0.0",
     "eslint": "^3.19.0",
-    "eslint-plugin-react": "^6.10.3",
-    "jest-cli": "^19.0.2",
+    "eslint-plugin-react": "^7.0.1",
+    "jest-cli": "^20.0.4",
     "semantic-release": "^6.3.2"
   },
   "config": {
