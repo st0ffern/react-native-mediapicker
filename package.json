@@ -27,8 +27,7 @@
   },
   "dependencies": {
     "react-native-image-progress": "^0.6.0",
-    "react-native-nativebutton": "^0.1.4",
-    "react-native-sglistview": "^0.3.10"
+    "react-native-nativebutton": "^0.1.4"
   },
   "peerDependencies": {
     "react-native": ">=0.25.0",
