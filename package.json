@@ -1,6 +1,6 @@
 {
   "name": "react-native-mediapicker",
-  "version": "0.0.0-semantically-release",
+  "version": "0.0.0-development",
   "description": "",
   "main": "src/index.js",
   "scripts": {
