@@ -1,13 +1,12 @@
 import React,{Component} from 'react'
 import {
-  CameraRoll
-  ,Platform
-  ,StyleSheet
-  ,View
-  ,ListView
+  View,
+  Platform,
+  ListView,
+  CameraRoll,
+  StyleSheet,
 } from 'react-native'
 
-import SGListView from 'react-native-sglistview'
 import MediaItem from './MediaItem'
 
 class MediaPicker extends Component{
@@ -46,7 +45,7 @@ class MediaPicker extends Component{
   render(){
     return (
       <View style={[ styles.wrapper, { padding: this.props.imageMargin, paddingRight: 0, backgroundColor: this.props.backgroundColor}, ]}>
-        <SGListView
+        <ListView
           stickyHeaderIndices={this.props.stickyHeaderIndices}
           onEndReachedThreshold={this.props.onEndReachedThreshold}
           initialListSize={this.props.initialListSize}

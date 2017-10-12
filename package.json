@@ -26,21 +26,20 @@
     "url": "https://github.com/stoffern/react-native-mediapicker/issues"
   },
   "dependencies": {
-    "react-native-image-progress": "^0.6.0",
-    "react-native-nativebutton": "^0.1.4",
-    "react-native-sglistview": "^0.4.3"
+    "react-native-image-progress": "^1.0.1",
+    "react-native-nativebutton": "^0.1.5"
   },
   "peerDependencies": {
-    "react-native": ">=0.25.0",
-    "react": ">=0.14.0 || ^15.0.0"
+    "react": ">=0.14.0 || ^15.0.0",
+    "react-native": ">=0.25.0"
   },
   "homepage": "https://github.com/stoffern/react-native-mediapicker#readme",
   "devDependencies": {
     "cz-conventional-changelog": "^2.0.0",
-    "eslint": "^3.19.0",
-    "eslint-plugin-react": "^7.0.1",
-    "jest-cli": "^20.0.4",
-    "semantic-release": "^6.3.2"
+    "eslint": "^4.8.0",
+    "eslint-plugin-react": "^7.4.0",
+    "jest-cli": "^21.2.1",
+    "semantic-release": "^8.0.3"
   },
   "config": {
     "commitizen": {
