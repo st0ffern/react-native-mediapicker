@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import{
-  View
-  ,StyleSheet
-  ,Dimensions
-  ,ActivityIndicator
-  ,Image
+  View,
+  StyleSheet,
+  Dimensions,
+  ActivityIndicator,
+  Image,
 } from 'react-native'
+import PropTypes from 'prop-types'
 
 import Button from 'react-native-nativebutton'
 import ImageProgress from 'react-native-image-progress'
@@ -63,11 +64,11 @@ MediaItem.defaultProps = {
 }
 
 MediaItem.propTypes = {
-  item: React.PropTypes.any.isRequired,
-  onClick: React.PropTypes.func.isRequired,
-  selected: React.PropTypes.bool,
-  selectedMarker: React.PropTypes.element,
-  imageMargin: React.PropTypes.number.isRequired,
+  item: PropTypes.any.isRequired,
+  onClick: PropTypes.func.isRequired,
+  selected: PropTypes.bool,
+  selectedMarker: PropTypes.element,
+  imageMargin: PropTypes.number.isRequired,
 }
 
 

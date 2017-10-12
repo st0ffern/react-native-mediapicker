@@ -26,6 +26,7 @@
     "url": "https://github.com/stoffern/react-native-mediapicker/issues"
   },
   "dependencies": {
+    "prop-types": "^15.6.0",
     "react-native-image-progress": "^1.0.1",
     "react-native-nativebutton": "^0.1.5"
   },

@@ -6,6 +6,7 @@ import {
   CameraRoll,
   StyleSheet,
 } from 'react-native'
+import PropTypes from 'prop-types'
 
 import MediaItem from './MediaItem'
 
@@ -136,8 +137,8 @@ const styles = StyleSheet.create({
 })
 
 MediaPicker.propTypes = {
-  callback: React.PropTypes.func.isRequired,
-  groupTypes: React.PropTypes.oneOf([
+  callback: PropTypes.func.isRequired,
+  groupTypes: PropTypes.oneOf([
     'Album',
     'All',
     'Event',
@@ -146,18 +147,18 @@ MediaPicker.propTypes = {
     'PhotoStream',
     'SavedPhotos',
   ]),
-  maximum: React.PropTypes.number,
-  assetType: React.PropTypes.oneOf([
+  maximum: PropTypes.number,
+  assetType: PropTypes.oneOf([
     'Photos',
     'Videos',
     'All',
   ]),
-  imagesPerRow: React.PropTypes.number,
-  imageMargin: React.PropTypes.number,
-  selectedMarker: React.PropTypes.element,
-  backgroundColor: React.PropTypes.string,
-  selected: React.PropTypes.array,
-  showLoading: React.PropTypes.bool,
+  imagesPerRow: PropTypes.number,
+  imageMargin: PropTypes.number,
+  selectedMarker: PropTypes.element,
+  backgroundColor: PropTypes.string,
+  selected: PropTypes.array,
+  showLoading: PropTypes.bool,
 }
 MediaPicker.defaultProps = {
   groupTypes: 'SavedPhotos',
